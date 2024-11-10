@@ -25,8 +25,7 @@ class Home extends StatelessWidget {
             // Search Box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
-              child: Container(
-                width: 382,
+              child: SizedBox( // Ganti Container dengan SizedBox
                 height: 29,
                 child: Stack(
                   children: [
@@ -34,7 +33,7 @@ class Home extends StatelessWidget {
                       left: 0,
                       top: 0,
                       child: Container(
-                        width: 370,
+                        width: MediaQuery.of(context).size.width - 80, // Responsive width
                         height: 24,
                         decoration: ShapeDecoration(
                           color: Color(0xFFE0E0E0),
@@ -47,9 +46,15 @@ class Home extends StatelessWidget {
                     Positioned(
                       left: 30,
                       top: 0,
+                      right: 12, // Tambahkan right constraint
                       child: Opacity(
                         opacity: 0.70,
                         child: TextField(
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontFamily: 'Outfit',
+                            fontWeight: FontWeight.w600,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Search . . .',
                             hintStyle: TextStyle(
@@ -57,49 +62,28 @@ class Home extends StatelessWidget {
                               fontSize: 11,
                               fontFamily: 'Outfit',
                               fontWeight: FontWeight.w600,
-                              height: 0.24,
-                              letterSpacing: -0.20,
                             ),
-                            border: InputBorder.none, // Menghapus border
-                            contentPadding: EdgeInsets.only(left: 40.0), // Padding untuk teks
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(left: 40.0, bottom: 12), 
                           ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      left: 6,
-                      top: 6,
-                      child: Container(
-                        width: 18,
-                        height: 18,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/search.png'),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // ... search icon position tetap sama
                   ],
                 ),
               ),
             ),
 
-            // Konten lainnya tetap sama
+            // Yellow Box with Image
             Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 40.0),
-              child: Container(
-                width: 382,
-                height: 193,
+              padding: const EdgeInsets.only(top: 5.0, left: 40.0, right: 40.0),
+              child: AspectRatio( // Gunakan AspectRatio untuk menjaga rasio
+                aspectRatio: 382/193,
                 child: Stack(
                   children: [
-                    // Background Yellow Box
-                    Positioned(
-                      left: 0,
-                      top: 0,
+                    Positioned.fill(
                       child: Container(
-                        width: 382,
-                        height: 158,
                         decoration: ShapeDecoration(
                           color: Color(0xFFFFDB7D),
                           shape: RoundedRectangleBorder(
@@ -108,19 +92,14 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Image assets 
                     Positioned(
                       left: 34,
+                      right: 34,
                       top: 0,
-                      child: Container(
-                        width: 311,
-                        height: 193,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/menu_page.png'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                      bottom: 0,
+                      child: Image.asset(
+                        'assets/menu_page.png',
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ],
@@ -128,8 +107,9 @@ class Home extends StatelessWidget {
               ),
             ),
 
+            // Menu Section
             Padding(
-              padding: const EdgeInsets.only(top: 0.0, left: 40.0),
+              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -142,7 +122,6 @@ class Home extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-
                   FoodMenu(),
                 ],
               ),

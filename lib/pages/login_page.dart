@@ -33,19 +33,16 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              
               ReusableTextField(
                 hintText: 'Username',
                 controller: usernameController,
               ),
               const SizedBox(height: 20),
-              
               ReusableTextField(
                 hintText: 'Password',
                 controller: passwordController,
                 isPassword: true,
               ),
-              
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
@@ -57,20 +54,22 @@ class LoginPage extends StatelessWidget {
 
                   if (username.isEmpty || password.isEmpty) {
                     Get.snackbar(
-                      'Fields Required', 
-                      'Please enter both username and password.', 
-                      snackPosition: SnackPosition.BOTTOM, 
+                      'Fields Required',
+                      'Please enter both username and password.',
+                      snackPosition: SnackPosition.BOTTOM,
                     );
-                  } else if (username != correctUsername || password != correctPassword) {
+                  } else if (username != correctUsername ||
+                      password != correctPassword) {
                     Get.snackbar(
                       'Login Failed',
-                      'Invalid username or password.', 
+                      'Invalid username or password.',
                       snackPosition: SnackPosition.BOTTOM,
                     );
                   } else {
-                    final UserController userController = Get.put(UserController());
-                    userController.login(username); 
-                    Get.toNamed('home'); 
+                    final UserController userController =
+                        Get.put(UserController());
+                    userController.login(username);
+                    Get.toNamed('home');
                   }
                 },
                 child: Text(
